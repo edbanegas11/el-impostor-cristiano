@@ -1,70 +1,72 @@
 :root { 
-    --bg: #05070a; --card-bg: #161f32; --primary: #3b82f6; 
+    --bg: #05070a;
+    --card-bg: #161f32; --primary: #3b82f6; 
     --accent: #10b981; --danger: #ef4444; --text: #f8fafc; --warning: #f59e0b; 
     --border: rgba(255,255,255,0.1);
 }
 /* Aplicar a toda la aplicación */
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden; /* Evita el scroll elástico del navegador */
-    position: fixed; /* Fija la vista */
-    user-select: none; /* No permite seleccionar texto */
-    -webkit-user-select: none;
-    -webkit-touch-callout: none; /* Desactiva el menú contextual al dejar presionado */
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #000; /* Color de fondo para que combine con el notch */
-}
-
-/* Permitir selección solo en el input (donde sí es necesario escribir) */
-input, textarea {
-    -webkit-user-select: text;
-    -moz-user-select: text;
-    -ms-user-select: text;
-    user-select: text;
+html {
+    background-color: var(--bg); /* O el color oscuro que prefieras */
+    height: -webkit-fill-available;
 }
 
 body { 
     font-family: 'Inter', -apple-system, sans-serif; 
-    background: #000; /* Fondo negro profundo para el notch */
+    background-color: var(--bg); /* Asegura que no haya bordes negros */
     color: var(--text); 
     margin: 0; 
     padding: 0;
     width: 100vw;
+    /* Esto soluciona la barra inferior en PWAs de iPhone */
     height: 100vh;
+    height: -webkit-fill-available; 
+    
     overflow: hidden; 
-    position: fixed; 
+    position: fixed; /* Evita que la app rebote o se mueva */
     display: flex;
     justify-content: center;
+    
+    /* Bloqueos nativos */
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
 }
+
+/* Permitir selección solo en el input (donde sí es necesario escribir) */
+input, textarea {
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    font-size: 16px !important; /* Evita el zoom automático en iPhone */
+}
+
 
 .app-container { 
     width: 100%; 
     max-width: 500px; 
-    height: 100vh; /* Usa el 100% del fixed body */
+    /* Importante: fill-available para que ignore la barra de Safari */
+    height: 100%;
     background: var(--card-bg); 
     position: relative; 
     display: flex; 
     flex-direction: column; 
     box-sizing: border-box;
-    /* ESTO ES VITAL: Evita que el contenido choque con el notch y la barra inferior */
+    
+    /* ESTO ELIMINA LA BARRA NEGRA: El fondo se expande, pero el contenido respeta el área segura */
     padding-top: env(safe-area-inset-top);
     padding-bottom: env(safe-area-inset-bottom);
 }
 
+/* 3. AJUSTE DE STEPS PARA QUE NO SE "COMAN" EL BOTÓN */
 .step { 
-    flex: 1; /* Ocupa todo el espacio disponible */
-    padding: 20px 25px; /* Reduje el padding superior porque ya tenemos el safe-area */
+    flex: 1;
+    height: 100%;
+    padding: 20px 25px; 
     box-sizing: border-box; 
     display: flex; 
     flex-direction: column; 
-    overflow-y: auto; 
-    /* Elimina el rebote elástico molesto de la web en iOS */
-    -webkit-overflow-scrolling: touch; 
+    overflow: hidden; /* El scroll lo maneja el stack-container, no el step */
 }
-
 .main-title { 
   font-size: 1.4rem; 
   color: var(--primary); 
