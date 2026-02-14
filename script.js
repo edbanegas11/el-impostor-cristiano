@@ -3,6 +3,7 @@ if ('serviceWorker' in navigator) {
     .then(() => console.log("Modo Offline Activo"))
     .catch((err) => console.log("Error registrando Offline", err));
 }
+
 const database = {
     biblia: [
         {w: "Jardín del Edén", h: "Fruta"},
