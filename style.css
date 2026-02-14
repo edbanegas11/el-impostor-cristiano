@@ -43,7 +43,7 @@ body {
 .app-container { 
     width: 100%; 
     max-width: 500px; 
-    height: 100%; /* Usa el 100% del fixed body */
+    height: 100vh; /* Usa el 100% del fixed body */
     background: var(--card-bg); 
     position: relative; 
     display: flex; 
