@@ -1,36 +1,37 @@
 :root { 
-    --bg: #05070a;
-    --card-bg: #161f32; --primary: #3b82f6; 
-    --accent: #10b981; --danger: #ef4444; --text: #f8fafc; --warning: #f59e0b; 
+    --bg: #161f32; /* Cambiamos el negro por tu color de tarjeta para unificar */
+    --card-bg: #161f32; 
+    --primary: #3b82f6; 
+    --accent: #10b981; 
+    --danger: #ef4444; 
+    --text: #f8fafc; 
+    --warning: #f59e0b; 
     --border: rgba(255,255,255,0.1);
 }
+
 /* Aplicar a toda la aplicación */
 html {
-    background-color: var(--bg); /* O el color oscuro que prefieras */
+    background-color: #161f32 !important;
     height: -webkit-fill-available;
+    margin: 0;
+    padding: 0;
 }
 
 body { 
     font-family: 'Inter', -apple-system, sans-serif; 
-    background-color: var(--bg); /* Asegura que no haya bordes negros */
+    background-color: #161f32 !important; 
     color: var(--text); 
     margin: 0; 
     padding: 0;
     width: 100vw;
-    /* Esto soluciona la barra inferior en PWAs de iPhone */
     height: 100vh;
     height: -webkit-fill-available; 
-    
     overflow: hidden; 
-    position: fixed; /* Evita que la app rebote o se mueva */
+    position: fixed; 
     display: flex;
     justify-content: center;
-    
-    /* Bloqueos nativos */
-    user-select: none;
     -webkit-user-select: none;
-    -webkit-touch-callout: none;
-    -webkit-tap-highlight-color: transparent;
+    user-select: none;
 }
 
 /* Permitir selección solo en el input (donde sí es necesario escribir) */
@@ -44,15 +45,13 @@ input, textarea {
 .app-container { 
     width: 100%; 
     max-width: 500px; 
-    /* Importante: fill-available para que ignore la barra de Safari */
-    height: 100%;
-    background: var(--card-bg); 
+    height: 100%; 
+    background: #161f32; /* Color sólido, sin transparencias */
     position: relative; 
     display: flex; 
     flex-direction: column; 
     box-sizing: border-box;
-    
-    /* ESTO ELIMINA LA BARRA NEGRA: El fondo se expande, pero el contenido respeta el área segura */
+    /* Esto protege los botones, pero el fondo azul sigue por debajo */
     padding-top: env(safe-area-inset-top);
     padding-bottom: env(safe-area-inset-bottom);
 }
