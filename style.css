@@ -56,12 +56,13 @@ body {
 
 .step { 
     flex: 1; /* Ocupa todo el espacio disponible */
-    padding: 20px 25px; /* Reduje el padding superior porque ya tenemos el safe-area */
+    padding: 20px 25px 0px 25px; /* Quitamos padding inferior para ganar espacio */
     box-sizing: border-box; 
     display: flex; 
     flex-direction: column; 
-    overflow-y: auto; 
-    /* Elimina el rebote elástico molesto de la web en iOS */
+    box-sizing: border-box; 
+    height: 100%;
+    overflow: hidden; /* IMPORTANTE: El step no debe tener scroll */
     -webkit-overflow-scrolling: touch; 
 }
 
