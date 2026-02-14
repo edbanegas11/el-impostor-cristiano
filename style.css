@@ -151,7 +151,7 @@ button, .btn-circle-add, .stack-item-btn {
     margin-top: auto; 
     
     /* 2. Asegura que no se pegue al borde físico del iPhone */
-    margin-bottom: 1px; 
+    margin-bottom: 15px; 
     
     /* 3. Evita que el botón se aplaste si hay muchos nombres */
     flex-shrink: 0; 
